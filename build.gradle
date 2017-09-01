@@ -70,8 +70,11 @@ processResources {
 dependencies {
 }
 
+
+jar.classifier = 'full'
 ext.jarFile = zipTree(jar.archivePath)
 def libsDir = new File(System.getenv("LIBS_DIR") ?: "build/libs/")
+sourceJar.excludes.addAll(["rikka/**"])
 
 task deobfJar(type: Jar) {
     destinationDir = libsDir
@@ -84,6 +87,14 @@ task deobfJar(type: Jar) {
     classifier = 'dev'
 }
 
-sourceJar.excludes.addAll(["rikka/**"])
-jar.excludes.addAll(["rikka/**"])
-build.dependsOn deobfJar
+task standaloneJar(type: Jar, dependsOn: reobfJar) {
+    destinationDir = libsDir
+
+    doFirst {
+        from(project.ext.jarFile) {
+            excludes.addAll(["rikka/**"])
+        }
+    }
+}
+
+build.dependsOn deobfJar, standaloneJar
