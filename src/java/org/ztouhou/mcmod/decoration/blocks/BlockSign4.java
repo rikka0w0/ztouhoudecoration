@@ -78,7 +78,7 @@ public class BlockSign4 extends BlockSignBase implements ITileEntityProvider{
         TileEntity te = world.getTileEntity(pos);
         
         if (te instanceof TileEntityFireExtinguisherBox) {
-        	InventoryHelper.dropInventoryItems(world, pos, (TileEntityFireExtinguisherBox) te);
+        	InventoryHelper.dropInventoryItems(world, pos, ((TileEntityFireExtinguisherBox) te).inventory);
         }
         
         super.breakBlock(world, pos, state);

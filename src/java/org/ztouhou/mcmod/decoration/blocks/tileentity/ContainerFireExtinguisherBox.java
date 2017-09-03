@@ -12,12 +12,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import rikka.librikka.container.ContainerInventory;
 import rikka.librikka.container.IContainerWithGui;
 
-public class ContainerFireExtinguisherBox extends ContainerInventory<TileEntityFireExtinguisherBox> implements IContainerWithGui {
+public class ContainerFireExtinguisherBox extends ContainerInventory implements IContainerWithGui {
 	public ContainerFireExtinguisherBox(InventoryPlayer invPlayer, TileEntityFireExtinguisherBox tileEntity) {
-		super(invPlayer, tileEntity);
+		super(invPlayer, tileEntity.inventory);
 		
-		addSlotToContainer(new FireExtinguisherSlot(tileEntity, 0, 96, 22));
-		addSlotToContainer(new FireExtinguisherSlot(tileEntity, 1, 132, 22));
+		addSlotToContainer(new FireExtinguisherSlot(inventoryTile, 0, 96, 22));
+		addSlotToContainer(new FireExtinguisherSlot(inventoryTile, 1, 132, 22));
 	}
 	
 	public static class FireExtinguisherSlot extends Slot {
