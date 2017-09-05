@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import rikka.librikka.Utils;
-import rikka.librikka.Properties;
+import rikka.librikka.properties.Properties;
 import rikka.librikka.RayTraceHelper;
 
 public class BlockSign4 extends BlockSignBase implements ITileEntityProvider{

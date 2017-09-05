@@ -5,7 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import rikka.librikka.Properties;
+import rikka.librikka.properties.Properties;
 
 public class BlockSign3 extends BlockSimpleSign {
 	public static String[] subNames = new String[] {"broadcast", "wirebox", "hydrant", "radiation"};

@@ -19,8 +19,8 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rikka.librikka.Properties;
 import rikka.librikka.model.loader.IModelLoader;
+import rikka.librikka.properties.Properties;
 
 @SideOnly(Side.CLIENT)
 public class CustomStateMapper extends StateMapperBase implements IModelLoader {

@@ -13,12 +13,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rikka.librikka.Properties;
 import rikka.librikka.RayTraceHelper;
 import rikka.librikka.block.ISubBlock;
 import rikka.librikka.block.BlockBase;
 import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.item.ItemBlockBase;
+import rikka.librikka.properties.Properties;
 
 public abstract class BlockSignBase extends BlockBase implements ISimpleTexture, ISubBlock {
 	public final String texturePrefix;

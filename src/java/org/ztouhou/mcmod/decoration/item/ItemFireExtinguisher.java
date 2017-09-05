@@ -86,34 +86,32 @@ public class ItemFireExtinguisher extends ItemBase implements ISimpleTexture {
 	/////////////////////
 	@Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {       
-        ItemStack stack = player.getHeldItemMainhand();
+        ItemStack stack = player.getHeldItem(hand);
         if(stack == null)
-        	return EnumActionResult.PASS;
+        	return EnumActionResult.FAIL;
         
         if (stack.isEmpty())
-        	return EnumActionResult.PASS;
+        	return EnumActionResult.FAIL;
         
         if (stack.getItemDamage() + 2 > stack.getMaxDamage())
-        	return EnumActionResult.PASS;
+        	return EnumActionResult.FAIL;
         
-        if(stack.getItem() instanceof ItemFireExtinguisher){
-        	//Extinguish fire on blocks
-            for(int i=-2;i<3;i++){
-                for(int j=-2;j<3;j++){
-                    for(int k=-2;k<3;k++){
-                    	for (EnumFacing side: EnumFacing.VALUES)
-                    		world.extinguishFire(player, pos.add(i, j, k), side);
-                    }
+    	//Extinguish fire on blocks
+        for(int i=-2;i<3;i++){
+            for(int j=-2;j<3;j++){
+                for(int k=-2;k<3;k++){
+                	for (EnumFacing side: EnumFacing.VALUES)
+                		world.extinguishFire(player, pos.add(i, j, k), side);
                 }
             }
-
-            //Extinguish fire on entities
-            for (Entity entity: world.getEntitiesWithinAABB(Entity.class, (new AxisAlignedBB(-2, -2, -2, 2, 2, 2)).offset(pos))) {
-            	entity.extinguish();
-            }
-            stack.damageItem(2, player);
         }
+
+        //Extinguish fire on entities
+        for (Entity entity: world.getEntitiesWithinAABB(Entity.class, (new AxisAlignedBB(-2, -2, -2, 2, 2, 2)).offset(pos))) {
+        	entity.extinguish();
+        }
+        stack.damageItem(2, player);
         
-		return EnumActionResult.PASS;
+		return EnumActionResult.SUCCESS;
     }
 }

@@ -17,10 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import rikka.librikka.Properties;
 import rikka.librikka.block.BlockBase;
 import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.item.ItemBlockBase;
+import rikka.librikka.properties.Properties;
 
 public class BlockSign5 extends BlockBase implements ISimpleTexture {
 	public BlockSign5() {
