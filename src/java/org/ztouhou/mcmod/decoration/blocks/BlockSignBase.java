@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,6 +28,7 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
 		super(unlocalizedName, material, ItemBlockBase.class);
 		
 		this.texturePrefix = unlocalizedName;
+		setCreativeTab(CreativeTabs.REDSTONE);
 	}
 
     @SideOnly(Side.CLIENT)

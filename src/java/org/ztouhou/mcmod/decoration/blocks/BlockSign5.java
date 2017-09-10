@@ -26,15 +26,11 @@ public class BlockSign5 extends BlockBase implements ISimpleTexture {
 	public BlockSign5() {
 		super("sign5", Material.GLASS, ItemBlockBase.class);
 		
+		setCreativeTab(CreativeTabs.REDSTONE);
         setHardness(1.0F);
         setResistance(5.0F);
 	}
 
-	@Override
-	public void beforeRegister() {
-		setCreativeTab(CreativeTabs.REDSTONE);
-	}
-	
 	@Override
 	public String getIconName(int damage) {
 		return "sign5_wetfloor";

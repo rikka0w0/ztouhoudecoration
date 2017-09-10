@@ -1,7 +1,6 @@
 package org.ztouhou.mcmod.decoration.blocks;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -14,11 +13,6 @@ public class BlockSign3 extends BlockSimpleSign {
 		super("sign3");
 	}
 	
-	@Override
-	public void beforeRegister() {
-		setCreativeTab(CreativeTabs.REDSTONE);
-	}
-
 	@Override
 	public String[] getSubBlockUnlocalizedNames() {
 		return subNames;

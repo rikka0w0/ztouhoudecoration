@@ -6,9 +6,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import rikka.librikka.container.StandardInventory;
 import rikka.librikka.tileentity.IGuiProviderTile;
-import rikka.librikka.tileentity.SETileEntity;
+import rikka.librikka.tileentity.TileEntityBase;
 
-public class TileEntityFireExtinguisherBox extends SETileEntity implements IGuiProviderTile {
+public class TileEntityFireExtinguisherBox extends TileEntityBase implements IGuiProviderTile {
 	public final StandardInventory inventory = new StandardInventory(this, 2, "container.mbe31_inventory_furnace.name");
 	
 	@Override

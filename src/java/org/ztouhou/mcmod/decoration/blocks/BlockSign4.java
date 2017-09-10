@@ -8,10 +8,8 @@ import javax.annotation.Nullable;
 import org.ztouhou.mcmod.decoration.Decoration;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityFireExtinguisherBox;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
@@ -26,7 +24,7 @@ import rikka.librikka.Utils;
 import rikka.librikka.properties.Properties;
 import rikka.librikka.RayTraceHelper;
 
-public class BlockSign4 extends BlockSignBase implements ITileEntityProvider{
+public class BlockSign4 extends BlockSignBase {
 	public static String[] subNames = new String[] {"lcd", "urinals", "fireextinguisher", "exit"};
 	
 	public BlockSign4() {
@@ -35,11 +33,6 @@ public class BlockSign4 extends BlockSignBase implements ITileEntityProvider{
         setHardness(5.0F);
         setResistance(10.0F);
 	}
-	
-	@Override
-	public void beforeRegister() {
-		setCreativeTab(CreativeTabs.REDSTONE);
-	}
 
 	@Override
 	public String[] getSubBlockUnlocalizedNames() {
@@ -47,8 +40,8 @@ public class BlockSign4 extends BlockSignBase implements ITileEntityProvider{
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {return null;}
-	
+	public boolean hasTileEntity(IBlockState state) {return true;}
+		
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		int type = state.getValue(Properties.type2bit);
