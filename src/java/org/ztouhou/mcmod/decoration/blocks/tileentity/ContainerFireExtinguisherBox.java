@@ -1,5 +1,6 @@
 package org.ztouhou.mcmod.decoration.blocks.tileentity;
 
+import org.ztouhou.mcmod.decoration.client.GuiFireExtinguisherBox;
 import org.ztouhou.mcmod.decoration.item.ItemFireExtinguisher;
 
 import net.minecraft.client.gui.GuiScreen;

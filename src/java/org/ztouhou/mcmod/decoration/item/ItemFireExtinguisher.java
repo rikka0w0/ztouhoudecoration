@@ -27,10 +27,6 @@ public class ItemFireExtinguisher extends ItemBase implements ISimpleTexture {
 		super("fireextinguisher", false);
 		setMaxStackSize(1);
 		setMaxDamage(40);
-	}
-
-	@Override
-	public void beforeRegister() {
 		setCreativeTab(CreativeTabs.REDSTONE);
 	}
 

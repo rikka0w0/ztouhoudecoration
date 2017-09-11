@@ -6,6 +6,7 @@ import org.ztouhou.mcmod.decoration.blocks.BlockSign3;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign4;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign5;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityFireExtinguisherBox;
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -27,6 +28,7 @@ public class BlockRegistry {
 	
 	public static void registerTileEntities() {
 		registerTile(TileEntityFireExtinguisherBox.class);
+		registerTile(TileEntityLED12864.class);
 	}
 	
     private static void registerTile(Class<? extends TileEntity> teClass) {

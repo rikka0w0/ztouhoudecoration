@@ -5,8 +5,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import org.ztouhou.mcmod.decoration.Decoration;
+import org.ztouhou.mcmod.decoration.GuiHandler;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityFireExtinguisherBox;
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -25,7 +26,7 @@ import rikka.librikka.properties.Properties;
 import rikka.librikka.RayTraceHelper;
 
 public class BlockSign4 extends BlockSignBase {
-	public static String[] subNames = new String[] {"lcd", "urinals", "fireextinguisher", "exit"};
+	public static String[] subNames = new String[] {"led", "urinals", "fireextinguisher", "exit"};
 	
 	public BlockSign4() {
 		super("sign4", Material.ROCK);
@@ -45,10 +46,14 @@ public class BlockSign4 extends BlockSignBase {
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		int type = state.getValue(Properties.type2bit);
-		if (type != 2)
+		switch (type) {
+		case 0:
+			return new TileEntityLED12864();
+		case 2:
+			return new TileEntityFireExtinguisherBox();
+		default:
 			return null;
-		
-		return new TileEntityFireExtinguisherBox();
+		}
 	}
 	
     @Override
@@ -61,7 +66,7 @@ public class BlockSign4 extends BlockSignBase {
 			return false;
         
         if (!world.isRemote)
-        	Decoration.openGui(player, world, pos, facing);
+        	GuiHandler.openGui(player, world, pos, facing);
         
         return true;
     }

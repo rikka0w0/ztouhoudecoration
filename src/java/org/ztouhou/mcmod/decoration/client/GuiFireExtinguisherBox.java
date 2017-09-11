@@ -1,4 +1,4 @@
-package org.ztouhou.mcmod.decoration.blocks.tileentity;
+package org.ztouhou.mcmod.decoration.client;
 
 import org.lwjgl.opengl.GL11;
 
