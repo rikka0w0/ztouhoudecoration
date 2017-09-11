@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -108,6 +109,24 @@ public class ItemFireExtinguisher extends ItemBase implements ISimpleTexture {
         }
         stack.damageItem(2, player);
         
+        if (!world.isRemote) {
+        	spawnFoam(world, player.posX, player.posY - 1, player.posZ);
+        	spawnFoam(world, player.posX, player.posY, player.posZ);
+        	spawnFoam(world, player.posX, player.posY + 1, player.posZ);
+        	spawnFoam(world, player.posX, player.posY + 2, player.posZ);
+        }
+        
 		return EnumActionResult.SUCCESS;
     }
+	
+	public static void spawnFoam(World world, double posX, double posY, double posZ) {
+    	EntityAreaEffectCloud entityareaeffectcloud = new EntityAreaEffectCloud(world, posX, posY, posZ);
+        entityareaeffectcloud.setRadius(3.0F);
+        entityareaeffectcloud.setRadiusOnUse(-0.5F);
+        entityareaeffectcloud.setWaitTime(1);
+        entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float)entityareaeffectcloud.getDuration());
+        entityareaeffectcloud.setColor(0xF0FFFFFF);
+        entityareaeffectcloud.setDuration(25);
+    	world.spawnEntity(entityareaeffectcloud);
+	}
 }

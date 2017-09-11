@@ -63,7 +63,6 @@ public class TileEntityLED12864 extends TileEntityBase{
     /////////////////////////////////////////////////////////
     ///Utils
     /////////////////////////////////////////////////////////
-	@SideOnly(Side.CLIENT)
 	private int rotation = -1;
 	
 	@SideOnly(Side.CLIENT)
