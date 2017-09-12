@@ -23,7 +23,8 @@ public class GuiHandler extends AutoGuiHandler{
 		}
 		
 		public static GuiType parse(int i) {
-			if (i >= GuiType.values().length)
+			i -= 7;
+			if (i>= GuiType.values().length)
 				return null;
 			return GuiType.values()[i];
 		}
@@ -48,7 +49,7 @@ public class GuiHandler extends AutoGuiHandler{
 	}
 	
     public static void openGui(EntityPlayer player, World world, BlockPos pos, GuiType gui) {
-    	player.openGui(Decoration.instance, gui.ordinal(), world, pos.getX(), pos.getY(), pos.getZ());
+    	player.openGui(Decoration.instance, gui.GuiID, world, pos.getX(), pos.getY(), pos.getZ());
     }
 	
     public static void openGui(EntityPlayer player, World world, BlockPos pos, EnumFacing facing) {
