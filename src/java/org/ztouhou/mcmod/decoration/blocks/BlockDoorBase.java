@@ -1,6 +1,8 @@
 package org.ztouhou.mcmod.decoration.blocks;
 
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
@@ -8,6 +10,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
@@ -143,6 +147,11 @@ public abstract class BlockDoorBase extends BlockDoor{
         GameRegistry.register(itemBlock, getRegistryName());
 	}
 
+	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? Items.AIR : itemBlock;
+    }
+	
 	@Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return new ItemStack(itemBlock);

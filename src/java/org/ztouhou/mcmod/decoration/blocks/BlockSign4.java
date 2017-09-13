@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import org.ztouhou.mcmod.decoration.GuiHandler;
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEnityUrinals;
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityExitSignWithSensor;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityFireExtinguisherBox;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
@@ -33,6 +35,7 @@ public class BlockSign4 extends BlockSignBase {
 		
         setHardness(5.0F);
         setResistance(10.0F);
+        setDefaultState(this.getDefaultState().withProperty(Properties.type2bit, 3));
 	}
 
 	@Override
@@ -40,6 +43,9 @@ public class BlockSign4 extends BlockSignBase {
 		return subNames;
 	}
 
+	@Override
+	protected boolean hasTileExState() {return true;}
+	
 	@Override
 	public boolean hasTileEntity(IBlockState state) {return true;}
 		
@@ -49,8 +55,12 @@ public class BlockSign4 extends BlockSignBase {
 		switch (type) {
 		case 0:
 			return new TileEntityLED12864();
+		case 1:
+			return new TileEnityUrinals();
 		case 2:
 			return new TileEntityFireExtinguisherBox();
+		case 3:
+			return new TileEntityExitSignWithSensor();
 		default:
 			return null;
 		}
@@ -62,13 +72,22 @@ public class BlockSign4 extends BlockSignBase {
             return false;
         
 		int type = state.getValue(Properties.type2bit);
-		if (type != 2)
-			return false;
-        
-        if (!world.isRemote)
-        	GuiHandler.openGui(player, world, pos, facing);
-        
-        return true;
+		if (type == 2) {
+	        if (!world.isRemote)
+	        	GuiHandler.openGui(player, world, pos, facing);
+	        
+	        return true;
+		} else if (type == 3) {
+			if (!world.isRemote) {
+				TileEntity te = world.getTileEntity(pos);
+				if (te instanceof TileEntityExitSignWithSensor) 
+					((TileEntityExitSignWithSensor) te).toggleForcedOn();
+			}
+			
+			return true;
+		}
+		
+		return false;
     }
     
     @Override
@@ -77,9 +96,52 @@ public class BlockSign4 extends BlockSignBase {
         
         if (te instanceof TileEntityFireExtinguisherBox) {
         	InventoryHelper.dropInventoryItems(world, pos, ((TileEntityFireExtinguisherBox) te).inventory);
+        } else if (te instanceof TileEntityExitSignWithSensor){
+        	((TileEntityExitSignWithSensor) te).updateRedstoneSignal();
         }
         
         super.breakBlock(world, pos, state);
+    }
+    
+    ///////////////////
+    /// RedStone
+    ///////////////////    
+    @Override
+    public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+    	return false;
+    }
+    
+    @Override
+    public boolean canProvidePower(IBlockState state) {
+    	int type = state.getValue(Properties.type2bit);
+    	return type == 3;
+    }
+    
+    @Override
+    public int getWeakPower(IBlockState blockState, IBlockAccess world, BlockPos pos, EnumFacing side) {
+    	TileEntity te = world.getTileEntity(pos);
+    	
+    	if (te instanceof TileEntityExitSignWithSensor) {
+    		boolean isPowered = ((TileEntityExitSignWithSensor) te).isPowered();
+
+    		return isPowered ? 15:0;
+    	}
+    	
+    	return 0;
+    }
+    
+    @Override
+    public int getStrongPower(IBlockState blockState, IBlockAccess world, BlockPos pos, EnumFacing side) {
+    	TileEntity te = world.getTileEntity(pos);
+    	
+    	if (te instanceof TileEntityExitSignWithSensor) {
+    		boolean isPowered = ((TileEntityExitSignWithSensor) te).isPowered();
+    		EnumFacing facing = ((TileEntityExitSignWithSensor) te).getFacing();
+    		
+    		return isPowered ? (facing==side.getOpposite()?15:0):0;
+    	}
+    	
+    	return 0;
     }
 	
     ///////////////////
@@ -133,7 +195,7 @@ public class BlockSign4 extends BlockSignBase {
     		return boundingBoxes1[rotation];
     	if (type == 2)
     		return boundingBoxes2[rotation];
-
+    	
     	return boundingBoxes[rotation];
     }
     

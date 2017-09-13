@@ -1,13 +1,26 @@
 package org.ztouhou.mcmod.decoration.client.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEnityUrinals;
 import org.ztouhou.mcmod.decoration.client.TechneModel;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rikka.librikka.model.quadbuilder.RawQuadCube2;
 import rikka.librikka.model.quadbuilder.TechneModelPart;
+import rikka.librikka.properties.UnlistedPropertyRef;
 
 @SideOnly(Side.CLIENT)
 public class ModelUrinals extends TechneModel {
+	private final List<BakedQuad> idle = new LinkedList();
+	private final List<BakedQuad> detected = new LinkedList();
+	private final List<BakedQuad> flushing = new LinkedList();
+	
 	public ModelUrinals(String texture, String particle, int rotation) {
 		super(texture, particle, rotation);
 	}
@@ -57,6 +70,51 @@ public class ModelUrinals extends TechneModel {
         setRotation(Shape8, 0F, 0F, 0F);
         
         TechneModelPart.render(quads, rotation, 1,  Shape1, Shape2, Shape3, Shape4, Shape5, Shape6, Shape7, Shape8);
+        
+
+        idle.clear();
+		float size = 0.125F;
+		RawQuadCube2 cube = new RawQuadCube2(size*2, size, 0.01F, texture, 1024,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0,
+				0, 272, 32, 288,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0);
+		cube.translateCoord(0.5F-size, -size, 0.505F);
+		cube.translateCoord(-0.3828125F, -0.046875F + 0.15F/16F, -0.2505F);
+		cube.rotateAroundY(rotation);
+		cube.translateCoord(0.5F, 1, 0.5F);
+		cube.bake(idle);
+		
+		
+		detected.clear();
+		cube = new RawQuadCube2(size*2, size, 0.01F, texture, 1024,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0,
+				32, 272, 64, 288,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0);
+		cube.translateCoord(0.5F-size, -size, 0.505F);
+		cube.translateCoord(-0.3828125F, -0.046875F + 0.15F/16F, -0.2505F);
+		cube.rotateAroundY(rotation);
+		cube.translateCoord(0.5F, 1, 0.5F);
+		cube.bake(detected);
+		
+		flushing.clear();
+		cube = new RawQuadCube2(size*2, size, 0.01F, texture, 1024,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0,
+				64, 272, 96, 288,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0,
+				-1, 0, -1, 0);
+		cube.translateCoord(0.5F-size, -size, 0.505F);
+		cube.translateCoord(-0.3828125F, -0.046875F + 0.15F/16F, -0.2505F);
+		cube.rotateAroundY(rotation);
+		cube.translateCoord(0.5F, 1, 0.5F);
+		cube.bake(flushing);
 	}
 
 	@Override
@@ -72,5 +130,34 @@ public class ModelUrinals extends TechneModel {
 	@Override
 	public int getVOffset() {
 		return 0;
+	}
+	
+	@Override
+	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing side, long rand) {
+		TileEnityUrinals te = UnlistedPropertyRef.get(blockState, TileEnityUrinals.class);
+		if (te != null) {
+			TileEnityUrinals.State state= te.getStateForRendering();
+			LinkedList<BakedQuad> list = new LinkedList();
+			list.addAll(quads);
+			
+			switch (state) {
+			case Idle:
+			case AfterUse:
+				list.addAll(idle);
+				break;
+			case Flushing:
+				list.addAll(flushing);
+				break;
+			case Using:
+				list.addAll(detected);
+				break;
+			default:
+				break;
+			
+			}
+			
+			return list;
+		}
+		return quads;
 	}
 }

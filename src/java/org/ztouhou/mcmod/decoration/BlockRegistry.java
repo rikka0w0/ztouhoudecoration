@@ -6,6 +6,8 @@ import org.ztouhou.mcmod.decoration.blocks.BlockSign2;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign3;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign4;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign5;
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEnityUrinals;
+import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityExitSignWithSensor;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityFireExtinguisherBox;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
@@ -35,8 +37,10 @@ public class BlockRegistry {
 	}
 	
 	public static void registerTileEntities() {
-		registerTile(TileEntityFireExtinguisherBox.class);
 		registerTile(TileEntityLED12864.class);
+		registerTile(TileEnityUrinals.class);
+		registerTile(TileEntityFireExtinguisherBox.class);
+		registerTile(TileEntityExitSignWithSensor.class);
 	}
 	
     private static void registerTile(Class<? extends TileEntity> teClass) {

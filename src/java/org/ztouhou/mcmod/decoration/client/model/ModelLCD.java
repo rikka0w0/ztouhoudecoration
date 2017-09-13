@@ -21,12 +21,12 @@ public class ModelLCD extends ModelComplexBase{
 	@Override
 	protected void bake() {
 		RawQuadCube2 cube = new RawQuadCube2(1, 0.6F, 0.1F, texture, 1024,
-				140,	952,	263,	959,
-				131,	959,	8, 		952,
-				8,		960,	135,	1023,
-				144,	960,	271,	1023,
-				136,	960,	143,	1023,
-				0,		960,	7,		1023
+				140,	952,	264,	960,
+				132,	960,	8, 		952,
+				8,		960,	136,	1024,
+				144,	960,	272,	1024,
+				136,	960,	144,	1024,
+				0,		960,	8,		1024
 				);
 		cube.translateCoord(0, 0.2F, 0.45F);
 		cube.rotateAroundY(rotation);

@@ -1,17 +1,23 @@
 package org.ztouhou.mcmod.decoration.blocks;
 
+import java.lang.ref.WeakReference;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rikka.librikka.RayTraceHelper;
@@ -20,6 +26,7 @@ import rikka.librikka.block.BlockBase;
 import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.item.ItemBlockBase;
 import rikka.librikka.properties.Properties;
+import rikka.librikka.properties.UnlistedPropertyRef;
 
 public abstract class BlockSignBase extends BlockBase implements ISimpleTexture, ISubBlock {
 	public final String texturePrefix;
@@ -36,13 +43,20 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
     	return texturePrefix + "_" + ((ISubBlock)this).getSubBlockUnlocalizedNames()[damage];
     }	
 	
+    protected boolean hasTileExState() {return false;}
+    
     ///////////////////////////////
     ///BlockStates
     ///////////////////////////////
     @Override
     protected final BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this,
-                new IProperty[]{Properties.type2bit, Properties.facing2bit});
+    	IProperty[] properties = new IProperty[]{Properties.type2bit, Properties.facing2bit};
+    	if (hasTileExState()) {
+    		return new ExtendedBlockState(this, properties, new IUnlistedProperty[] {UnlistedPropertyRef.propertyTile});
+    	}else {
+    		return new BlockStateContainer(this, properties);
+    	}
+
     }
 
     @Override
@@ -68,6 +82,20 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
         return state;
     }
     
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        if (state instanceof IExtendedBlockState) {
+            IExtendedBlockState retval = (IExtendedBlockState) state;
+
+            TileEntity te = world.getTileEntity(pos);
+            
+            if (te != null)
+            	retval = retval.withProperty(UnlistedPropertyRef.propertyTile, new WeakReference<>(te));
+            
+            return retval;
+        }
+        return state;
+    }
     //////////////////////////////////////
     /////Item drops and Block activities
     //////////////////////////////////////

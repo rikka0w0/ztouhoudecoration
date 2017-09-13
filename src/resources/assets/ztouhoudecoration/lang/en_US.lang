@@ -28,3 +28,6 @@ item.ztouhoudecoration:led12864isp.name=Led 12864 ISP
 # Gui
 gui.ztouhoudecoration:led12864isp.title=Led 12864 Programmer
 gui.ztouhoudecoration:led12864isp.content=Content
+
+# Message
+msg.ztouhoudecoration:sign3.hydrant.needbucket=You can fill a bucket with water by right click the hydrant
