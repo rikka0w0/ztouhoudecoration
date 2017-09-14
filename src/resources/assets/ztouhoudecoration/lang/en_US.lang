@@ -1,3 +1,6 @@
+# Creative Tab
+itemGroup.ztouhoudecoration=ztouhoudecoration
+
 # Blocks
 tile.ztouhoudecoration:sign1.exit.name=Exit
 tile.ztouhoudecoration:sign1.toilet.name=Toilet
@@ -20,6 +23,15 @@ tile.ztouhoudecoration:sign4.fireextinguisher.name=Fire Extinguisher Box
 tile.ztouhoudecoration:sign4.exit.name=Exit (With Sensor)
 
 tile.ztouhoudecoration:sign5.name=Slippery Floor
+
+tile.ztouhoudecoration:misc.fencelight.name=Fence Light
+tile.ztouhoudecoration:misc.fencelight_small.name=Small Fence Light
+tile.ztouhoudecoration:misc.cellinglight.name=Celling Light
+
+tile.ztouhoudecoration:door1.name=FireDoor
+tile.ztouhoudecoration:door2.name=Sealed FireDoor
+tile.ztouhoudecoration:door3.name=FireDoor (Exit)
+tile.ztouhoudecoration:door4.name=Door (Machine Room)
 
 # Items
 item.ztouhoudecoration:fireextinguisher.name=Fire Extinguisher

@@ -4,11 +4,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.ztouhou.mcmod.decoration.CreativeTab;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
@@ -26,7 +27,7 @@ public class BlockSign5 extends BlockBase implements ISimpleTexture {
 	public BlockSign5() {
 		super("sign5", Material.GLASS, ItemBlockBase.class);
 		
-		setCreativeTab(CreativeTabs.REDSTONE);
+		setCreativeTab(CreativeTab.instance);
         setHardness(1.0F);
         setResistance(5.0F);
 	}

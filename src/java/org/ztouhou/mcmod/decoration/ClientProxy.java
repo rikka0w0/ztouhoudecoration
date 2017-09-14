@@ -25,18 +25,18 @@ public class ClientProxy extends CommonProxy{
 		AdvancedModelLoader loader = new AdvancedModelLoader(Decoration.MODID);
 		
 		//Blocks
-		CustomStateMapper signStateMapper = new CustomStateMapper(Decoration.MODID);
-		loader.registerModelLoader(signStateMapper);
+		CustomStateMapper customStateMapper = new CustomStateMapper(Decoration.MODID);
+		loader.registerModelLoader(customStateMapper);
 		loader.registerInventoryIcon(BlockRegistry.blockSign1);
-		signStateMapper.register(BlockRegistry.blockSign1);
+		customStateMapper.register(BlockRegistry.blockSign1);
 		loader.registerInventoryIcon(BlockRegistry.blockSign2);
-		signStateMapper.register(BlockRegistry.blockSign2);
+		customStateMapper.register(BlockRegistry.blockSign2);
 		loader.registerInventoryIcon(BlockRegistry.blockSign3);
-		signStateMapper.register(BlockRegistry.blockSign3);
+		customStateMapper.register(BlockRegistry.blockSign3);
 		loader.registerInventoryIcon(BlockRegistry.blockSign4);
-		signStateMapper.register(BlockRegistry.blockSign4);
+		customStateMapper.register(BlockRegistry.blockSign4);
 		loader.registerInventoryIcon(BlockRegistry.blockSign5);
-		signStateMapper.register(BlockRegistry.blockSign5);
+		customStateMapper.register(BlockRegistry.blockSign5);
 		
 		//Items
 		loader.registerInventoryIcon(ItemRegistry.fireExtinguisher);
@@ -52,6 +52,10 @@ public class ClientProxy extends CommonProxy{
 		ModelLoader.setCustomStateMapper(BlockRegistry.blockDoor3, doorStateMapper);
 		loader.registerInventoryIcon(BlockRegistry.blockDoor4.itemBlock);
 		ModelLoader.setCustomStateMapper(BlockRegistry.blockDoor4, doorStateMapper);
+		
+		//Misc
+		customStateMapper.register(BlockRegistry.blockMisc);
+		loader.registerInventoryIcon(BlockRegistry.blockMisc);
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package org.ztouhou.mcmod.decoration;
 
 import org.ztouhou.mcmod.decoration.blocks.BlockDoorBase;
+import org.ztouhou.mcmod.decoration.blocks.BlockMisc;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign1;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign2;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign3;
@@ -22,6 +23,7 @@ public class BlockRegistry {
 	public static BlockSign5 blockSign5;
 	
 	public static BlockDoorBase blockDoor1, blockDoor2, blockDoor3, blockDoor4;
+	public static BlockMisc blockMisc;
 	
 	public static void registerBlocks() {
 		blockSign1 = new BlockSign1();
@@ -34,6 +36,8 @@ public class BlockRegistry {
 		blockDoor2 = new BlockDoorBase.Door2();
 		blockDoor3 = new BlockDoorBase.Door3();
 		blockDoor4 = new BlockDoorBase.Door4();
+		
+		blockMisc = new BlockMisc();
 	}
 	
 	public static void registerTileEntities() {

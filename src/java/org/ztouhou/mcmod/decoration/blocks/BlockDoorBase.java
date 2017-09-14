@@ -3,12 +3,13 @@ package org.ztouhou.mcmod.decoration.blocks;
 
 import java.util.Random;
 
+import org.ztouhou.mcmod.decoration.CreativeTab;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -141,7 +142,7 @@ public abstract class BlockDoorBase extends BlockDoor{
 		
         setUnlocalizedName(unlocalizedName);
         setRegistryName(unlocalizedName);                //Key!
-        setCreativeTab(CreativeTabs.REDSTONE);
+        setCreativeTab(CreativeTab.instance);
         
         GameRegistry.register(this);
         GameRegistry.register(itemBlock, getRegistryName());
@@ -155,5 +156,11 @@ public abstract class BlockDoorBase extends BlockDoor{
 	@Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return new ItemStack(itemBlock);
+    }
+	
+	@Override
+    public String getUnlocalizedName() {
+		String domain = this.getRegistryName().getResourceDomain();
+        return "tile." + domain + ":" + super.getUnlocalizedName().substring(5);
     }
 }

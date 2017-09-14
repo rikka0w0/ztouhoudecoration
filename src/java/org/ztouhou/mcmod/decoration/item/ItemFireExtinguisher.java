@@ -1,9 +1,10 @@
 package org.ztouhou.mcmod.decoration.item;
 
+import org.ztouhou.mcmod.decoration.CreativeTab;
+
 import com.google.common.collect.Multimap;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +29,7 @@ public class ItemFireExtinguisher extends ItemBase implements ISimpleTexture {
 		super("fireextinguisher", false);
 		setMaxStackSize(1);
 		setMaxDamage(40);
-		setCreativeTab(CreativeTabs.REDSTONE);
+		setCreativeTab(CreativeTab.instance);
 	}
 
 	@Override

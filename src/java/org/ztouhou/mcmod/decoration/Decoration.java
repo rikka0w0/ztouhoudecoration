@@ -30,6 +30,8 @@ public class Decoration {
      */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+    	new CreativeTab();
+    	
         ItemRegistry.registerItems();
         BlockRegistry.registerBlocks();
         

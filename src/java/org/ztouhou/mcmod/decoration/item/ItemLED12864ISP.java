@@ -2,10 +2,10 @@ package org.ztouhou.mcmod.decoration.item;
 
 import java.util.List;
 
+import org.ztouhou.mcmod.decoration.CreativeTab;
 import org.ztouhou.mcmod.decoration.GuiHandler;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +27,7 @@ public class ItemLED12864ISP extends ItemBase implements ISimpleTexture {
 	
 	public ItemLED12864ISP() {
 		super("led12864isp", false);
-		setCreativeTab(CreativeTabs.REDSTONE);
+		setCreativeTab(CreativeTab.instance);
         setMaxStackSize(1);
 	}
 

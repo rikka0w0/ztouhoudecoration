@@ -8,8 +8,8 @@ import rikka.librikka.model.quadbuilder.TechneModelPart;
 
 @SideOnly(Side.CLIENT)
 public class ModelFenceLight extends TechneModel {
-	public ModelFenceLight(String texture, String particle, int rotation) {
-		super(texture, particle, rotation);
+	public ModelFenceLight(String texture, String particle) {
+		super(texture, particle, 0);
 	}
 
 	@Override

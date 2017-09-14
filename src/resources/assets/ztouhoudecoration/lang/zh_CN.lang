@@ -1,4 +1,7 @@
-﻿# Blocks
+﻿# Creative Tab
+itemGroup.ztouhoudecoration=zry姐姐的装饰mod
+
+# Blocks
 tile.ztouhoudecoration:sign1.exit.name=安全出口牌
 tile.ztouhoudecoration:sign1.toilet.name=洗手间
 tile.ztouhoudecoration:sign1.male.name=男洗手间
@@ -20,6 +23,15 @@ tile.ztouhoudecoration:sign4.fireextinguisher.name=灭火器箱子
 tile.ztouhoudecoration:sign4.exit.name=带传感器的安全出口牌
 
 tile.ztouhoudecoration:sign5.name=小心地滑
+
+tile.ztouhoudecoration:misc.fencelight.name=栅栏灯
+tile.ztouhoudecoration:misc.fencelight_small.name=小栅栏灯
+tile.ztouhoudecoration:misc.cellinglight.name=吸顶灯
+
+tile.ztouhoudecoration:door1.name=防火门
+tile.ztouhoudecoration:door2.name=实心防火门
+tile.ztouhoudecoration:door3.name=应急出口防火门
+tile.ztouhoudecoration:door4.name=设备间门
 
 # Items
 item.ztouhoudecoration:fireextinguisher.name=灭火器

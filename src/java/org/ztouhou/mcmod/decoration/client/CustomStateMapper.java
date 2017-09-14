@@ -3,7 +3,10 @@ package org.ztouhou.mcmod.decoration.client;
 import org.ztouhou.mcmod.decoration.BlockRegistry;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign4;
 import org.ztouhou.mcmod.decoration.blocks.BlockSimpleSign;
+import org.ztouhou.mcmod.decoration.client.model.ModelCellingLight;
 import org.ztouhou.mcmod.decoration.client.model.ModelExit;
+import org.ztouhou.mcmod.decoration.client.model.ModelFenceLight;
+import org.ztouhou.mcmod.decoration.client.model.ModelFenceLightSmall;
 import org.ztouhou.mcmod.decoration.client.model.ModelFireExtinguisher;
 import org.ztouhou.mcmod.decoration.client.model.ModelLCD;
 import org.ztouhou.mcmod.decoration.client.model.ModelSign;
@@ -62,6 +65,10 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         	int rotation = state.getValue(Properties.facing3bit);
         	
         	varStr = rotation + "";
+        } else if (block == BlockRegistry.blockMisc) {
+        	int type = BlockRegistry.blockMisc.getMetaFromState(state);
+        	
+        	varStr = type + "";
         }
         
         ModelResourceLocation res = new ModelResourceLocation(domain + ":" + VPATH,
@@ -124,6 +131,17 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         	int rotation = Integer.parseInt(splited[2]);
         	
         	return new ModelWetFloor(texture1, domain + ":items/sign5_wetfloor", rotation);
+        }  else if (block == BlockRegistry.blockMisc) {
+        	int type = Integer.parseInt(splited[2]);
+        	switch (type) {
+        	case 0:
+        		return new ModelFenceLight(texture1, domain + ":items/misc_fencelight");
+        	case 1:
+        		return new ModelFenceLightSmall(texture1, domain + ":items/misc_fencelight_small");
+        	case 2:
+        		return new ModelCellingLight(texture1, domain + ":items/misc_cellinglight");
+        	}
+        	
         }
         
         return null;

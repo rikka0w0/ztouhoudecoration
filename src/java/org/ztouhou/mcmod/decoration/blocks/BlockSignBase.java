@@ -2,11 +2,12 @@ package org.ztouhou.mcmod.decoration.blocks;
 
 import java.lang.ref.WeakReference;
 
+import org.ztouhou.mcmod.decoration.CreativeTab;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -35,12 +36,13 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
 		super(unlocalizedName, material, ItemBlockBase.class);
 		
 		this.texturePrefix = unlocalizedName;
-		setCreativeTab(CreativeTabs.REDSTONE);
+		setCreativeTab(CreativeTab.instance);
 	}
 
+	@Override
     @SideOnly(Side.CLIENT)
     public String getIconName(int damage) {
-    	return texturePrefix + "_" + ((ISubBlock)this).getSubBlockUnlocalizedNames()[damage];
+    	return texturePrefix + "_" + getSubBlockUnlocalizedNames()[damage];
     }	
 	
     protected boolean hasTileExState() {return false;}
@@ -75,11 +77,6 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
     	int type = state.getValue(Properties.type2bit);
     	int meta = (type<<2) | rotation;
         return meta & 15;
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return state;
     }
     
     @Override
