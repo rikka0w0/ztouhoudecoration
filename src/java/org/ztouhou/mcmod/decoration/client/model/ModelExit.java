@@ -16,56 +16,40 @@ import rikka.librikka.properties.UnlistedPropertyRef;
 
 @SideOnly(Side.CLIENT)
 public class ModelExit extends ModelComplexBase{
-	private final boolean hasSensor;
-	private final int state;
-	
 	private final List<BakedQuad> deteced = new LinkedList();
 	private final List<BakedQuad> forced = new LinkedList();
 	
-	public ModelExit(String texture, String particle, int rotation, boolean hasSensor, int state) {
+	public ModelExit(String texture, String particle, int rotation) {
 		super(texture, particle, rotation);
-		
-		this.hasSensor = hasSensor;
-		this.state = state;
 	}
 
 	@Override
 	protected void bake() {
-		if (hasSensor) {
-			RawQuadCube2 cube = new RawQuadCube2(1, 0.4375F, 0.1F,
-					272, 952, texture, 1024,
-					128, 56, 8);
-			
-			cube.rotateAroundY(rotation);
-			cube.translateCoord(0.5F, 0, 0.5F);
-			cube.bake(quads);
-			
-			deteced.clear();
-			cube = new RawQuadCube2(1, 0.4375F, 0.1F,
-					272, 448, texture, 1024,
-					128, 56, 8);
-			
-			cube.rotateAroundY(rotation);
-			cube.translateCoord(0.5F, 0, 0.5F);
-			cube.bake(deteced);
-			
-			forced.clear();
-			cube = new RawQuadCube2(1, 0.4375F, 0.1F,
-					272, 576, texture, 1024,
-					128, 56, 8);
-			
-			cube.rotateAroundY(rotation);
-			cube.translateCoord(0.5F, 0, 0.5F);
-			cube.bake(forced);
-		} else {
-			RawQuadCube2 cube = new RawQuadCube2(1, 0.4375F, 0.1F,
-					544, 512, texture, 1024,
-					128, 56, 8);
-			
-			cube.rotateAroundY(rotation);
-			cube.translateCoord(0.5F, 0, 0.5F);
-			cube.bake(quads);
-		}
+		RawQuadCube2 cube = new RawQuadCube2(1, 0.4375F, 0.1F,
+				272, 952, texture, 1024,
+				128, 56, 8);
+		
+		cube.rotateAroundY(rotation);
+		cube.translateCoord(0.5F, 0, 0.5F);
+		cube.bake(quads);
+		
+		deteced.clear();
+		cube = new RawQuadCube2(1, 0.4375F, 0.1F,
+				272, 448, texture, 1024,
+				128, 56, 8);
+		
+		cube.rotateAroundY(rotation);
+		cube.translateCoord(0.5F, 0, 0.5F);
+		cube.bake(deteced);
+		
+		forced.clear();
+		cube = new RawQuadCube2(1, 0.4375F, 0.1F,
+				272, 576, texture, 1024,
+				128, 56, 8);
+		
+		cube.rotateAroundY(rotation);
+		cube.translateCoord(0.5F, 0, 0.5F);
+		cube.bake(forced);
 	}
 
 	

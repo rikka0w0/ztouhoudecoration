@@ -1,18 +1,18 @@
 package org.ztouhou.mcmod.decoration.client.model;
 
-import java.util.List;
+import org.ztouhou.mcmod.decoration.client.ModelComplexBase;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rikka.librikka.model.quadbuilder.RawQuadCube2;
 
 @SideOnly(Side.CLIENT)
-public class ModelSignLarge extends ModelSign{
+public class ModelSignLarge extends ModelComplexBase{
+	protected final int index;
+	
 	public ModelSignLarge(String texture, String particle, int rotation, int index) {
-		super(texture, particle, rotation, index);
+		super(texture, particle, rotation);
+		this.index = index;
 	}
 
 	@Override
@@ -31,10 +31,5 @@ public class ModelSignLarge extends ModelSign{
 		cube.rotateAroundY(rotation);
 		cube.translateCoord(0.5F, 0, 0.5F);
 		cube.bake(quads);
-	}
-	
-	@Override
-	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) { 
-		return quads;
 	}
 }

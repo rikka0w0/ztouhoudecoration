@@ -24,6 +24,11 @@ tile.ztouhoudecoration:sign4.exit.name=Exit (With Sensor)
 
 tile.ztouhoudecoration:sign5.name=Slippery Floor
 
+tile.ztouhoudecoration:sign6.hv.name=Danger: High Voltage
+tile.ztouhoudecoration:sign6.authorizedonly.name=Authorized Personnel Only
+tile.ztouhoudecoration:sign6.keepout.name=Authorized Personnel Only 2
+tile.ztouhoudecoration:sign6.onswitchon.name=Do Not Switch On The Power
+
 tile.ztouhoudecoration:misc.fencelight.name=Fence Light
 tile.ztouhoudecoration:misc.fencelight_small.name=Small Fence Light
 tile.ztouhoudecoration:misc.cellinglight.name=Celling Light

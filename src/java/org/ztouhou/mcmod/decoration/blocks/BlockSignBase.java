@@ -144,20 +144,18 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
     ///////////////////
     /// BoundingBox
     ///////////////////
-    protected final static AxisAlignedBB[] boundingBoxes, boundingBoxesLarge;
+    protected final static AxisAlignedBB[] 
+    		boundingBoxes = createAABB(0.2814F, 0, 0, 0.7189F, 0.1F, 1), 
+    		boundingBoxesLarge = createAABB(0, 0, 0, 1, 0.1F, 1), 
+    		boundingBoxesWarningSign = createAABB(0.125F, 0, 0, 0.875F, 1F/16F, 1);
     
-    static {
-    	boundingBoxes = new AxisAlignedBB[4];
-    	boundingBoxes[0] = RayTraceHelper.createAABB(EnumFacing.SOUTH, 0.2814F, 0, 0, 0.7189F, 0.1F, 1);
-    	boundingBoxes[1] = RayTraceHelper.createAABB(EnumFacing.EAST, 0.2814F, 0, 0, 0.7189F, 0.1F, 1);
-    	boundingBoxes[2] = RayTraceHelper.createAABB(EnumFacing.NORTH, 0.2814F, 0, 0, 0.7189F, 0.1F, 1);
-    	boundingBoxes[3] = RayTraceHelper.createAABB(EnumFacing.WEST, 0.2814F, 0, 0, 0.7189F, 0.1F, 1);
-    	
-    	boundingBoxesLarge = new AxisAlignedBB[4];
-    	boundingBoxesLarge[0] = RayTraceHelper.createAABB(EnumFacing.SOUTH, 0, 0, 0, 1, 0.1F, 1);
-    	boundingBoxesLarge[1] = RayTraceHelper.createAABB(EnumFacing.EAST, 0, 0, 0, 1, 0.1F, 1);
-    	boundingBoxesLarge[2] = RayTraceHelper.createAABB(EnumFacing.NORTH, 0, 0, 0, 1, 0.1F, 1);
-    	boundingBoxesLarge[3] = RayTraceHelper.createAABB(EnumFacing.WEST, 0, 0, 0, 1, 0.1F, 1);
+    protected static AxisAlignedBB[] createAABB(float xStart, float yStart, float zStart, float xEnd, float yEnd, float zEnd) {
+    	AxisAlignedBB[] boundingBoxes = new AxisAlignedBB[4];
+    	boundingBoxes[0] = RayTraceHelper.createAABB(EnumFacing.SOUTH, xStart, yStart, zStart, xEnd, yEnd, zEnd);
+    	boundingBoxes[1] = RayTraceHelper.createAABB(EnumFacing.EAST, xStart, yStart, zStart, xEnd, yEnd, zEnd);
+    	boundingBoxes[2] = RayTraceHelper.createAABB(EnumFacing.NORTH, xStart, yStart, zStart, xEnd, yEnd, zEnd);
+    	boundingBoxes[3] = RayTraceHelper.createAABB(EnumFacing.WEST, xStart, yStart, zStart, xEnd, yEnd, zEnd);
+    	return boundingBoxes;
     }
     
     @Override

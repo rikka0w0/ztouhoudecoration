@@ -1,7 +1,6 @@
 package org.ztouhou.mcmod.decoration.client;
 
 import org.ztouhou.mcmod.decoration.BlockRegistry;
-import org.ztouhou.mcmod.decoration.blocks.BlockSign4;
 import org.ztouhou.mcmod.decoration.blocks.BlockSimpleSign;
 import org.ztouhou.mcmod.decoration.client.model.ModelCellingLight;
 import org.ztouhou.mcmod.decoration.client.model.ModelExit;
@@ -9,8 +8,8 @@ import org.ztouhou.mcmod.decoration.client.model.ModelFenceLight;
 import org.ztouhou.mcmod.decoration.client.model.ModelFenceLightSmall;
 import org.ztouhou.mcmod.decoration.client.model.ModelFireExtinguisher;
 import org.ztouhou.mcmod.decoration.client.model.ModelLCD;
-import org.ztouhou.mcmod.decoration.client.model.ModelSign;
 import org.ztouhou.mcmod.decoration.client.model.ModelSignLarge;
+import org.ztouhou.mcmod.decoration.client.model.ModelSignStandard;
 import org.ztouhou.mcmod.decoration.client.model.ModelUrinals;
 import org.ztouhou.mcmod.decoration.client.model.ModelWetFloor;
 
@@ -22,6 +21,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.model.loader.IModelLoader;
 import rikka.librikka.properties.Properties;
 
@@ -58,9 +58,9 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         } else if (block == BlockRegistry.blockSign4) {
         	int rotation = state.getValue(Properties.facing2bit);
         	int type = state.getValue(Properties.type2bit);
-        	String textureSheet = ((BlockSign4)block).getIconName(type);
+        	String inventoryIcon = ((ISimpleTexture)block).getIconName(type);
         	
-        	varStr = rotation + "," + type + "," + textureSheet;
+        	varStr = rotation + "," + type + "," + inventoryIcon;
         } else if (block == BlockRegistry.blockSign5) {
         	int rotation = state.getValue(Properties.facing3bit);
         	
@@ -69,6 +69,12 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         	int type = BlockRegistry.blockMisc.getMetaFromState(state);
         	
         	varStr = type + "";
+        } else if (block == BlockRegistry.blockSign6) {
+        	int rotation = state.getValue(Properties.facing2bit);
+        	int type = state.getValue(Properties.type2bit);
+        	String inventoryIcon = ((ISimpleTexture)block).getIconName(type);
+        	
+        	varStr = rotation + "," + type + "," + inventoryIcon;
         }
         
         ModelResourceLocation res = new ModelResourceLocation(domain + ":" + VPATH,
@@ -86,19 +92,18 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         String texture1 = domain + ":blocks/texture1";
         if (block instanceof BlockSimpleSign) {
         	int rotation = Integer.parseInt(splited[2]);
-        	int textureIndex = Integer.parseInt(splited[3]);
+        	int type = Integer.parseInt(splited[3]);
         	String particle = splited[4];
         	
         	if (block == BlockRegistry.blockSign1 || block == BlockRegistry.blockSign2) {
-            	return new ModelSign(
-            			texture1,
-            			domain + ":items/" + particle,
-            			rotation, textureIndex);
+            	return new ModelSignStandard(texture1, domain + ":items/" + particle, rotation, 
+            			1, 0.4375F, 0.1F,
+            			1024, 544, 512+56*type , 672, 568+56*type);
         	} else if (block == BlockRegistry.blockSign3) {
             	return new ModelSignLarge(
             			texture1,
             			domain + ":items/" + particle,
-            			rotation, textureIndex);
+            			rotation, type);
         	}
         } else if (block == BlockRegistry.blockSign4) {
         	int rotation = Integer.parseInt(splited[2]);
@@ -125,7 +130,7 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         		return new ModelExit(
         				texture1,
             			domain + ":items/" + particle,
-            			rotation, true, 1);        		
+            			rotation);        		
         	}
         } else if (block == BlockRegistry.blockSign5) {
         	int rotation = Integer.parseInt(splited[2]);
@@ -142,6 +147,14 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         		return new ModelCellingLight(texture1, domain + ":items/misc_cellinglight");
         	}
         	
+        } else if (block == BlockRegistry.blockSign6) {
+        	int rotation = Integer.parseInt(splited[2]);
+        	int type = Integer.parseInt(splited[3]);
+        	String particle = splited[4];
+        	
+        	return new ModelSignStandard(texture1, domain + ":items/" + particle, rotation,
+        			1 , 12F/16F, 1F/16F,
+    				1024, 672, type*96+512, 800, type*96+608);
         }
         
         return null;

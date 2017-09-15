@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.ztouhou.mcmod.decoration.BlockRegistry;
 import org.ztouhou.mcmod.decoration.GuiHandler;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEnityUrinals;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityExitSignWithSensor;
@@ -97,7 +98,8 @@ public class BlockSign4 extends BlockSignBase {
         if (te instanceof TileEntityFireExtinguisherBox) {
         	InventoryHelper.dropInventoryItems(world, pos, ((TileEntityFireExtinguisherBox) te).inventory);
         } else if (te instanceof TileEntityExitSignWithSensor){
-        	((TileEntityExitSignWithSensor) te).updateRedstoneSignal();
+        	if (((TileEntityExitSignWithSensor) te).isPowered())
+				updateRedstoneSignal(world, pos, state);
         }
         
         super.breakBlock(world, pos, state);
@@ -105,7 +107,18 @@ public class BlockSign4 extends BlockSignBase {
     
     ///////////////////
     /// RedStone
-    ///////////////////    
+    ///////////////////
+	public static void updateRedstoneSignal(TileEntityExitSignWithSensor te) {
+		BlockRegistry.blockSign4.updateRedstoneSignal(te.getWorld(), te.getPos(), te.getWorld().getBlockState(te.getPos()));
+	}
+
+	private void updateRedstoneSignal(World world, BlockPos pos, IBlockState state) {
+		int rotation = state.getValue(Properties.facing2bit);
+		EnumFacing facing = TileEntityExitSignWithSensor.getFacing(rotation);
+		world.notifyNeighborsOfStateChange(pos, this, false);
+		world.notifyNeighborsOfStateChange(pos.offset(facing), this, false);
+	}
+
     @Override
     public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
     	return false;
@@ -147,28 +160,13 @@ public class BlockSign4 extends BlockSignBase {
     ///////////////////
     /// BoundingBox
     ///////////////////
-	protected final static AxisAlignedBB[] boundingBoxes0, boundingBoxes1, boundingBoxes2;
+	protected final static AxisAlignedBB[] 
+			boundingBoxes0 = createAABB(0.2F, 0, 0, 0.8F, 0.1F, 1), 
+			boundingBoxes1 = createAABB(0, 0, 0.05F, 1, 0.65F, 0.95F), 
+			boundingBoxes2 = createAABB(0, 0, 0.05F, 0.85F, 0.55F, 0.95F);
 	protected final static List<AxisAlignedBB>[] hitboxes = new List[4];
 	
     static {
-    	boundingBoxes0 = new AxisAlignedBB[4];
-    	boundingBoxes0[0] = RayTraceHelper.createAABB(EnumFacing.SOUTH, 0.2F, 0, 0, 0.8F, 0.1F, 1);
-    	boundingBoxes0[1] = RayTraceHelper.createAABB(EnumFacing.EAST, 0.2F, 0, 0, 0.8F, 0.1F, 1);
-    	boundingBoxes0[2] = RayTraceHelper.createAABB(EnumFacing.NORTH, 0.2F, 0, 0, 0.8F, 0.1F, 1);
-    	boundingBoxes0[3] = RayTraceHelper.createAABB(EnumFacing.WEST, 0.2F, 0, 0, 0.8F, 0.1F, 1);
-    	
-    	boundingBoxes1 = new AxisAlignedBB[4];
-    	boundingBoxes1[0] = RayTraceHelper.createAABB(EnumFacing.SOUTH, 0, 0, 0.05F, 1, 0.65F, 0.95F);
-    	boundingBoxes1[1] = RayTraceHelper.createAABB(EnumFacing.EAST, 0, 0, 0.05F, 1, 0.65F, 0.95F);
-    	boundingBoxes1[2] = RayTraceHelper.createAABB(EnumFacing.NORTH, 0, 0, 0.05F, 1, 0.65F, 0.95F);
-    	boundingBoxes1[3] = RayTraceHelper.createAABB(EnumFacing.WEST, 0, 0, 0.05F, 1, 0.65F, 0.95F);
-    	
-    	boundingBoxes2 = new AxisAlignedBB[4];
-    	boundingBoxes2[0] = RayTraceHelper.createAABB(EnumFacing.SOUTH, 0, 0, 0.05F, 0.85F, 0.55F, 0.95F);
-    	boundingBoxes2[1] = RayTraceHelper.createAABB(EnumFacing.EAST, 0, 0, 0.05F, 0.85F, 0.55F, 0.95F);
-    	boundingBoxes2[2] = RayTraceHelper.createAABB(EnumFacing.NORTH, 0, 0, 0.05F, 0.85F, 0.55F, 0.95F);
-    	boundingBoxes2[3] = RayTraceHelper.createAABB(EnumFacing.WEST, 0, 0, 0.05F, 0.85F, 0.55F, 0.95F);
-    	
     	for (int i=0; i<4; i++) {
     		EnumFacing side = Utils.horizontalInverted[i];
     		List<AxisAlignedBB> hitbox = new LinkedList();

@@ -1,5 +1,5 @@
 ﻿# Creative Tab
-itemGroup.ztouhoudecoration=zry姐姐的装饰mod
+itemGroup.ztouhoudecoration=Z神社装潢Mod
 
 # Blocks
 tile.ztouhoudecoration:sign1.exit.name=安全出口牌
@@ -23,6 +23,11 @@ tile.ztouhoudecoration:sign4.fireextinguisher.name=灭火器箱子
 tile.ztouhoudecoration:sign4.exit.name=带传感器的安全出口牌
 
 tile.ztouhoudecoration:sign5.name=小心地滑
+
+tile.ztouhoudecoration:sign6.hv.name=高压危险
+tile.ztouhoudecoration:sign6.authorizedonly.name=只准相关人员进入
+tile.ztouhoudecoration:sign6.keepout.name=只准相关人员进入2
+tile.ztouhoudecoration:sign6.onswitchon.name=禁止合闸有人工作
 
 tile.ztouhoudecoration:misc.fencelight.name=栅栏灯
 tile.ztouhoudecoration:misc.fencelight_small.name=小栅栏灯

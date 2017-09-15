@@ -9,6 +9,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.ztouhou.mcmod.decoration.blocks.BlockSign4;
 import rikka.librikka.RayTraceHelper;
 import rikka.librikka.properties.Properties;
 import rikka.librikka.tileentity.TileEntityBase;
@@ -26,12 +27,7 @@ public class TileEntityExitSignWithSensor extends TileEntityBase implements ITic
 	public void toggleForcedOn() {
 		this.forcedOn = !this.forcedOn;
 		this.markTileEntityForS2CSync();
-		updateRedstoneSignal();
-	}
-
-	public void updateRedstoneSignal() {
-		this.world.notifyNeighborsOfStateChange(pos, this.getBlockType(), false);
-		this.world.notifyNeighborsOfStateChange(pos.offset(getFacing()), this.getBlockType(), false);
+		BlockSign4.updateRedstoneSignal(this);
 	}
 	
 	private int getRotation() {
@@ -40,7 +36,23 @@ public class TileEntityExitSignWithSensor extends TileEntityBase implements ITic
 		
 		return rotationInt;
 	}
-	
+
+	public static EnumFacing getFacing(int facing) {
+		switch (facing) {
+			case 0:
+				return EnumFacing.SOUTH; //2
+			case 1:
+				return EnumFacing.EAST;  //5
+			case 2:
+				return EnumFacing.NORTH; //3
+			case 3:
+				return EnumFacing.WEST;  //4
+			default:
+				break;
+		}
+		return null;
+	}
+
 	public EnumFacing getFacing() {
 		if (facing == null) {
 	        switch (getRotation()) {
@@ -84,7 +96,7 @@ public class TileEntityExitSignWithSensor extends TileEntityBase implements ITic
 		}
 		
 		timer = 0;
-		
+
 		//Scan for players
 		List playerList = world.getEntitiesWithinAABB(EntityPlayer.class, scanRange[getRotation()].offset(pos));
 		if (playerList == null)
@@ -94,7 +106,7 @@ public class TileEntityExitSignWithSensor extends TileEntityBase implements ITic
 		if (detected != this.detected) {
 			this.detected = detected;
 			this.markTileEntityForS2CSync();
-			updateRedstoneSignal();
+			BlockSign4.updateRedstoneSignal(this);
 		}
 	}
 	

@@ -7,6 +7,7 @@ import org.ztouhou.mcmod.decoration.blocks.BlockSign2;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign3;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign4;
 import org.ztouhou.mcmod.decoration.blocks.BlockSign5;
+import org.ztouhou.mcmod.decoration.blocks.BlockSign6;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEnityUrinals;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityExitSignWithSensor;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityFireExtinguisherBox;
@@ -21,6 +22,7 @@ public class BlockRegistry {
 	public static BlockSign3 blockSign3;
 	public static BlockSign4 blockSign4;
 	public static BlockSign5 blockSign5;
+	public static BlockSign6 blockSign6;
 	
 	public static BlockDoorBase blockDoor1, blockDoor2, blockDoor3, blockDoor4;
 	public static BlockMisc blockMisc;
@@ -31,6 +33,7 @@ public class BlockRegistry {
 		blockSign3 = new BlockSign3();
 		blockSign4 = new BlockSign4();
 		blockSign5 = new BlockSign5();
+		blockSign6 = new BlockSign6();
 		
 		blockDoor1 = new BlockDoorBase.Door1();
 		blockDoor2 = new BlockDoorBase.Door2();

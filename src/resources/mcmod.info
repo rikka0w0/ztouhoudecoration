@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ztouhoudecoration",
+  "name": "Z-touhou Decoration Mod",
+  "description": "Z神社装潢Mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.z-touhou.org/",
+  "updateUrl": "",
+  "authorList": ["z-touhou.org", "Rikka0_0"],
+  "credits": "z-touhou.org",
+  "logoFile": "test.log",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -37,6 +37,8 @@ public class ClientProxy extends CommonProxy{
 		customStateMapper.register(BlockRegistry.blockSign4);
 		loader.registerInventoryIcon(BlockRegistry.blockSign5);
 		customStateMapper.register(BlockRegistry.blockSign5);
+		loader.registerInventoryIcon(BlockRegistry.blockSign6);
+		customStateMapper.register(BlockRegistry.blockSign6);
 		
 		//Items
 		loader.registerInventoryIcon(ItemRegistry.fireExtinguisher);

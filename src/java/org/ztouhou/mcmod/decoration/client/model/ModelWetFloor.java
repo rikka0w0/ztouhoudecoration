@@ -53,11 +53,11 @@ public class ModelWetFloor extends TechneModel {
         FRFoot.addBox(0F, 30F, 0F, 3, 3, 1);
         FRFoot.setRotationPoint(2F, 16F, 0.25F);
         setRotation(FRFoot, -0.2526364F, 0F, 0F);
-        FTop = new TechneModelPart(this, 26, 0);
+        FTop = new TechneModelPart(this, 0, 0);
         FTop.addBox(0F, 0F, 0F, 10, 1, 1);
         FTop.setRotationPoint(-5F, 17F, 0F);
         setRotation(FTop, 0.2526364F, 0F, 0F);
-        BTop = new TechneModelPart(this, 26, 0);
+        BTop = new TechneModelPart(this, 0, 0);
         BTop.addBox(0F, 0F, 0F, 10, 1, 1);
         BTop.setRotationPoint(-5F, 17F, 0F);
         setRotation(BTop, -0.2526364F, 0F, 0F);
