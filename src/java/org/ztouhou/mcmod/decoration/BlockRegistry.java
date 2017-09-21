@@ -15,6 +15,8 @@ import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import rikka.librikka.block.BlockBase;
 
 public class BlockRegistry {
 	public static BlockSign1 blockSign1;
@@ -27,7 +29,7 @@ public class BlockRegistry {
 	public static BlockDoorBase blockDoor1, blockDoor2, blockDoor3, blockDoor4;
 	public static BlockMisc blockMisc;
 	
-	public static void registerBlocks() {
+	public static void initBlocks() {
 		blockSign1 = new BlockSign1();
 		blockSign2 = new BlockSign2();
 		blockSign3 = new BlockSign3();
@@ -43,12 +45,51 @@ public class BlockRegistry {
 		blockMisc = new BlockMisc();
 	}
 	
+	public static void registerBlocks(IForgeRegistry registry, boolean isItemBlock) {
+		registerBlocks(registry, isItemBlock,
+				blockSign1,
+				blockSign2,
+				blockSign3,
+				blockSign4,
+				blockSign5,
+				blockSign6,
+				
+				blockMisc
+				);
+		
+/*		if (isItemBlock) {
+			registry.registerAll(
+					blockDoor1.itemBlock,
+					blockDoor2.itemBlock,
+					blockDoor3.itemBlock,
+					blockDoor4.itemBlock
+					);
+		} else {
+			registry.registerAll(
+					blockDoor1,
+					blockDoor2,
+					blockDoor3,
+					blockDoor4
+					);
+		}*/
+	}
+	
 	public static void registerTileEntities() {
 		registerTile(TileEntityLED12864.class);
 		registerTile(TileEnityUrinals.class);
 		registerTile(TileEntityFireExtinguisherBox.class);
 		registerTile(TileEntityExitSignWithSensor.class);
 	}
+	
+    
+    private static void registerBlocks(IForgeRegistry registry, boolean isItemBlock, BlockBase... blocks) {
+    	if (isItemBlock) {
+        	for (BlockBase block: blocks)
+        		registry.register(block.itemBlock);
+    	} else {
+    		registry.registerAll(blocks);
+    	}
+    }
 	
     private static void registerTile(Class<? extends TileEntity> teClass) {
         String registryName = teClass.getName();

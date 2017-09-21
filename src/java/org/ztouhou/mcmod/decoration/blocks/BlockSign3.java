@@ -39,14 +39,19 @@ public class BlockSign3 extends BlockSimpleSign {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack held = player.getHeldItem(hand);
+        int type = state.getValue(Properties.type2bit);
         
-        if(held != null && !held.isEmpty() && held.isItemEqual(new ItemStack(Items.BUCKET))) {
-        	player.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
-        } else {
-        	if (world.isRemote)
-        		Utils.chatWithLocalization(player, "msg.ztouhoudecoration:sign3.hydrant.needbucket");
+        if (type == 2) {
+            if(held != null && !held.isEmpty() && held.isItemEqual(new ItemStack(Items.BUCKET))) {
+            	player.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
+            } else {
+            	if (world.isRemote)
+            		Utils.chatWithLocalization(player, "msg.ztouhoudecoration:sign3.hydrant.needbucket");
+            }
+            
+            return true;
         }
-        
-        return true;
+
+        return false;
     }
 }
