@@ -31,7 +31,7 @@ public abstract class ModelComplexBase extends CodeBasedModel{
 	}
 	
 	@Override
-	protected final void onTextureRegistered(Function<ResourceLocation, TextureAtlasSprite> registry) {
+	protected final void bake(Function<ResourceLocation, TextureAtlasSprite> registry) {
 		texture = registry.apply(textureLocation);
 		particle = registry.apply(particleLocation);
 		
