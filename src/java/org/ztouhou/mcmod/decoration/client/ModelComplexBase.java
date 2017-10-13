@@ -12,7 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rikka.librikka.model.codebased.CodeBasedModel;
+import rikka.librikka.model.CodeBasedModel;
 import rikka.librikka.model.quadbuilder.TechneModelPart;
 
 @SideOnly(Side.CLIENT)
