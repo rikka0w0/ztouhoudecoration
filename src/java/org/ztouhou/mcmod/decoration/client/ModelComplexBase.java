@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -31,9 +32,9 @@ public abstract class ModelComplexBase extends CodeBasedModel{
 	}
 	
 	@Override
-	protected final void bake(Function<ResourceLocation, TextureAtlasSprite> registry) {
-		texture = registry.apply(textureLocation);
-		particle = registry.apply(particleLocation);
+	protected final void bake(Function<ResourceLocation, TextureAtlasSprite> textureRegistry) {
+		texture = textureRegistry.apply(textureLocation);
+		particle = textureRegistry.apply(particleLocation);
 		
 		quads.clear();
 		bake();
@@ -78,6 +79,8 @@ public abstract class ModelComplexBase extends CodeBasedModel{
         //BMain.setRotationPoint(-5F, 17F, 0F);
         //BMain.setRotation(0.2526364F, 0F, 0F);
         //BMain.render(quads);
+		if (side != null)
+			return ImmutableList.of();
 		
 		return quads;
 	}
