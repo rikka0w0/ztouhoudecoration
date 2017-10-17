@@ -73,7 +73,7 @@ public class BlockMisc extends MetaBlock implements ISimpleTexture {
     
     static {
     	boundingBoxes = new AxisAlignedBB[subNames.length];
-    	boundingBoxes[0] = new AxisAlignedBB(0.1875, 0, 0.1875, 0.8125, 1, 0.8125);
+    	boundingBoxes[0] = new AxisAlignedBB(0.1875, 0, 0.1875, 0.8125, 0.9375, 0.8125);
     	boundingBoxes[1] = new AxisAlignedBB(0.375, 0, 0.375, 0.625, 0.25, 0.625);
     	boundingBoxes[2] = new AxisAlignedBB(0, 0.875, 0, 1, 1, 1);
     }

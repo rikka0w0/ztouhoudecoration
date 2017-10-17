@@ -3,11 +3,14 @@ package org.ztouhou.mcmod.decoration.client.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEnityUrinals;
 import org.ztouhou.mcmod.decoration.client.TechneModel;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -160,4 +163,20 @@ public class ModelUrinals extends TechneModel {
 		}
 		return quads;
 	}
+	
+	private final static ItemCameraTransforms itemCameraTransforms = new ItemCameraTransforms(
+    		//						Rotation					Translation						Scale
+    		new ItemTransformVec3f(new Vector3f(75, 75, 0), 	new Vector3f(-0.16F, 0.15625F, 0), 	new Vector3f(0.5F, 0.5F, 0.5F)),	//thirdperson_leftIn
+    		new ItemTransformVec3f(new Vector3f(75, 75, 0), 	new Vector3f(-0.16F, 0.15625F, 0), 	new Vector3f(0.5F, 0.5F, 0.5F)),	//thirdperson_rightIn
+    		new ItemTransformVec3f(new Vector3f(0, 90, 0), 		new Vector3f(0,0.1F,0), 		new Vector3f(0.4F, 0.4F, 0.4F)),		//firstperson_leftIn
+    		new ItemTransformVec3f(new Vector3f(0, 90, 0), 		new Vector3f(0,0.1F,0), 		new Vector3f(0.4F, 0.4F, 0.4F)),		//firstperson_rightIn
+    		new ItemTransformVec3f(new Vector3f(), 				new Vector3f(), 				new Vector3f()), 						//headIn
+            new ItemTransformVec3f(new Vector3f(30, 135, 0), 	new Vector3f(-0.1F,-0.05F,0),	new Vector3f(0.7F, 0.7F, 0.7F)), 	//guiIn
+            new ItemTransformVec3f(new Vector3f(), 				new Vector3f(0, 0.1875F, 0), 	new Vector3f(0.35F, 0.325F, 0.35F)),		//groundIn
+            new ItemTransformVec3f(new Vector3f(), 				new Vector3f(), 				new Vector3f(0.5F, 0.5F, 0.5F)));		//fixedIn
+	
+    @Override
+    public ItemCameraTransforms getItemCameraTransforms() {
+    	return itemCameraTransforms;
+    }
 }

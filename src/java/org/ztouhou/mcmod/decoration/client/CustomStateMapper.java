@@ -21,6 +21,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rikka.librikka.block.MetaBlock;
 import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.model.loader.IModelLoader;
 import rikka.librikka.properties.Properties;
@@ -40,7 +41,7 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
     }
     
     @Override
-    protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+    public ModelResourceLocation getModelResourceLocation(IBlockState state) {
         Block block = state.getBlock();
         String blockDomain = block.getRegistryName().getResourceDomain();
         String blockName = block.getRegistryName().getResourcePath();
@@ -162,5 +163,14 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
     
     public void register(Block block) {
         ModelLoader.setCustomStateMapper(block, this);
+    }
+    
+    public void register3D(MetaBlock block) {
+    	ModelLoader.setCustomStateMapper(block, this);
+    	
+    	for (int i: block.propertyMeta.getAllowedValues()) {
+    		ModelLoader.setCustomModelResourceLocation(block.itemBlock, i, 
+    				this.getModelResourceLocation(block.getStateFromMeta(i)));
+    	}
     }
 }

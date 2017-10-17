@@ -1,9 +1,13 @@
 package org.ztouhou.mcmod.decoration.client.model;
 
+import org.lwjgl.util.vector.Vector3f;
 import org.ztouhou.mcmod.decoration.client.TechneModel;
 
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rikka.librikka.model.ModelPerspectives;
 import rikka.librikka.model.quadbuilder.TechneModelPart;
 
 @SideOnly(Side.CLIENT)
@@ -68,4 +72,18 @@ public class ModelFenceLight extends TechneModel {
 	public int getVOffset() {
 		return 42;
 	}
+	
+    public final static ItemCameraTransforms itemCameraTransforms = ModelPerspectives.create(ModelPerspectives.ItemBlock,
+    		new ItemTransformVec3f(new Vector3f(75, 45, 0), 	new Vector3f(0, 0.15625F, 0), 	new Vector3f(0.45F, 0.45F, 0.45F)),	//thirdperson_leftIn
+    		new ItemTransformVec3f(new Vector3f(75, 45, 0), 	new Vector3f(0, 0.15625F, 0), 	new Vector3f(0.45F, 0.45F, 0.45F)),	//thirdperson_rightIn
+    		new ItemTransformVec3f(new Vector3f(0, 225, 0), 	new Vector3f(0,0.15F,0), 		new Vector3f(0.5F, 0.5F, 0.5F)),		//firstperson_leftIn
+    		new ItemTransformVec3f(new Vector3f(0, 45, 0), 		new Vector3f(0,0.15F,0), 		new Vector3f(0.5F, 0.5F, 0.5F)),		//firstperson_rightIn
+    		null, 
+    		new ItemTransformVec3f(new Vector3f(30, 225, 0), 	new Vector3f(), 		new Vector3f(0.75F, 0.75F, 0.75F))	//gui
+    		, null, null);
+    
+    @Override
+    public ItemCameraTransforms getItemCameraTransforms() {
+    	return itemCameraTransforms;
+    }
 }

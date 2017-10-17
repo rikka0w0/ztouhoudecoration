@@ -1,7 +1,10 @@
 package org.ztouhou.mcmod.decoration.client.model;
 
+import org.lwjgl.util.vector.Vector3f;
 import org.ztouhou.mcmod.decoration.client.TechneModel;
 
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rikka.librikka.model.quadbuilder.TechneModelPart;
@@ -48,4 +51,20 @@ public class ModelFireExtinguisher extends TechneModel {
 	public int getVOffset() {
 		return 35;
 	}
+	
+	private final static ItemCameraTransforms itemCameraTransforms = new ItemCameraTransforms(
+    		//						Rotation					Translation						Scale
+    		new ItemTransformVec3f(new Vector3f(75, 45, 0), 	new Vector3f(0, 0.15625F, 0), 	new Vector3f(0.375F, 0.375F, 0.375F)),	//thirdperson_leftIn
+    		new ItemTransformVec3f(new Vector3f(75, 45, 0), 	new Vector3f(0, 0.15625F, 0), 	new Vector3f(0.375F, 0.375F, 0.375F)),	//thirdperson_rightIn
+    		new ItemTransformVec3f(new Vector3f(0, 90, 0), 		new Vector3f(0,0.1F,0), 		new Vector3f(0.4F, 0.4F, 0.4F)),		//firstperson_leftIn
+    		new ItemTransformVec3f(new Vector3f(0, 90, 0), 		new Vector3f(0,0.1F,0), 		new Vector3f(0.4F, 0.4F, 0.4F)),		//firstperson_rightIn
+    		new ItemTransformVec3f(new Vector3f(), 				new Vector3f(), 				new Vector3f()), 						//headIn
+            new ItemTransformVec3f(new Vector3f(30, 135, 0), 	new Vector3f(-0.1F,-0.05F,0),	new Vector3f(0.75F, 0.75F, 0.75F)), 	//guiIn
+            new ItemTransformVec3f(new Vector3f(), 				new Vector3f(0, 0.1875F, 0), 	new Vector3f(0.35F, 0.35F, 0.35F)),		//groundIn
+            new ItemTransformVec3f(new Vector3f(), 				new Vector3f(), 				new Vector3f(0.5F, 0.5F, 0.5F)));		//fixedIn
+	
+    @Override
+    public ItemCameraTransforms getItemCameraTransforms() {
+    	return itemCameraTransforms;
+    }
 }

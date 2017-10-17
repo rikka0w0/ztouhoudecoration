@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import rikka.librikka.model.loader.AdvancedModelLoader;
+import rikka.librikka.properties.Properties;
 
 @Mod.EventBusSubscriber(modid = Decoration.MODID, value = Side.CLIENT)
 public class ClientRegistrationHandler {
@@ -54,8 +55,10 @@ public class ClientRegistrationHandler {
 		ModelLoader.setCustomStateMapper(BlockRegistry.blockDoor4, doorStateMapper);
 		
 		//Misc
-		customStateMapper.register(BlockRegistry.blockMisc);
-		loader.registerInventoryIcon(BlockRegistry.blockMisc);
+		customStateMapper.register3D(BlockRegistry.blockMisc);
+		
+		ModelLoader.setCustomModelResourceLocation(BlockRegistry.blockSign4.itemBlock, 1, customStateMapper.getModelResourceLocation(BlockRegistry.blockSign4.getDefaultState().withProperty(Properties.type2bit, 1)));
+		ModelLoader.setCustomModelResourceLocation(BlockRegistry.blockSign4.itemBlock, 2, customStateMapper.getModelResourceLocation(BlockRegistry.blockSign4.getDefaultState().withProperty(Properties.type2bit, 2)));
 	}
 	
 	public static void registerTileEntityRenders() {

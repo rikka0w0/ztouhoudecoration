@@ -35,7 +35,7 @@ public class ModelExit extends ModelComplexBase{
 		
 		deteced.clear();
 		cube = new RawQuadCube2(1, 0.4375F, 0.1F,
-				272, 448, texture, 1024,
+				256, 448, texture, 1024,
 				128, 56, 8);
 		
 		cube.rotateAroundY(rotation);
