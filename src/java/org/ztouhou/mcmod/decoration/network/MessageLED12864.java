@@ -1,7 +1,5 @@
 package org.ztouhou.mcmod.decoration.network;
 
-import java.io.UnsupportedEncodingException;
-
 import org.ztouhou.mcmod.decoration.Decoration;
 import org.ztouhou.mcmod.decoration.item.ItemLED12864ISP;
 
@@ -14,6 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import rikka.librikka.ByteSerializer;
 
 /**
  * Client to Server packet
@@ -37,42 +36,19 @@ public class MessageLED12864 implements IMessage {
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		int numOfRows = buf.readByte();
-		int[] rowLength = new int[numOfRows];
+		
 		this.content = new String[numOfRows];
-		
-		for (int i=0; i<numOfRows; i++)
-			rowLength[i] = buf.readByte();
-		
-		try {
-			for (int i=0; i<numOfRows; i++) {
-				ByteBuf rowBuf = buf.readBytes(rowLength[i]);
 				
-				this.content[i] = new String(rowBuf.array(),"UTF8");
-			}
-			
-        } catch (Exception e) {
-            e.printStackTrace();
-		}
+		for (int i=0; i<numOfRows; i++)
+			this.content[i] = (String) ByteSerializer.instance.unpackData(buf);
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeByte(content.length);
 		
-		byte byteBuf[][] = new byte[content.length][];
-		
-        try {
-        	for (int i=0; i<content.length; i++)
-        		byteBuf[i] = content[i].getBytes("UTF8");
-
-        	for (int i=0; i<byteBuf.length; i++)
-        		buf.writeByte(byteBuf[i].length);
-        	
-        	for (int i=0; i<byteBuf.length; i++)
-        		buf.writeBytes(byteBuf[i]);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+		for (int i=0; i<content.length; i++)
+			ByteSerializer.instance.packData(buf, content[i]);
 	}
 
 	public static class Handler implements IMessageHandler<MessageLED12864, IMessage> {
