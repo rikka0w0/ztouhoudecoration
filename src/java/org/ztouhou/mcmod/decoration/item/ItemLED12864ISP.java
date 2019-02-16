@@ -2,6 +2,7 @@ package org.ztouhou.mcmod.decoration.item;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import org.ztouhou.mcmod.decoration.CreativeTab;
 import org.ztouhou.mcmod.decoration.GuiHandler;
 import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
@@ -21,6 +22,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.item.ItemBase;
+
+import javax.annotation.Nullable;
 
 public class ItemLED12864ISP extends ItemBase implements ISimpleTexture {
 	public static final int numOfRows = 4;
@@ -107,7 +110,7 @@ public class ItemLED12864ISP extends ItemBase implements ISimpleTexture {
  
 	@Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!stack.hasTagCompound())
 			return;
 		

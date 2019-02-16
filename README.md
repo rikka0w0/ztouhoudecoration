@@ -1,7 +1,8 @@
 # ztouhoudecoration
 A Minecraft Mod. Fire extinguishers, all kind of signs
 
-Supported Minecraft Version: 1.11.2
+Supported Minecraft Version: 1.11.2, 1.12.2
+(Content may vary)
 
 # Dependencies
 [LibRikka](https://github.com/rikka0w0/librikka)

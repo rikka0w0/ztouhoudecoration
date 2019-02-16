@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class LED12864Render extends TileEntitySpecialRenderer<TileEntityLED12864> {	
     @Override
-    public void renderTileEntityAt(TileEntityLED12864 te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(TileEntityLED12864 te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if (te.content == null)
         	return;
     	

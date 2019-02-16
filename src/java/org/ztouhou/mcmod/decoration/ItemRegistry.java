@@ -3,7 +3,7 @@ package org.ztouhou.mcmod.decoration;
 import org.ztouhou.mcmod.decoration.item.ItemFireExtinguisher;
 import org.ztouhou.mcmod.decoration.item.ItemLED12864ISP;
 
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemRegistry {
 	public static ItemFireExtinguisher fireExtinguisher;

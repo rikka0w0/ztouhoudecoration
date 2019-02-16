@@ -15,7 +15,7 @@ import org.ztouhou.mcmod.decoration.blocks.tileentity.TileEntityLED12864;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import rikka.librikka.block.BlockBase;
 
 public class BlockRegistry {
@@ -57,7 +57,7 @@ public class BlockRegistry {
 				blockMisc
 				);
 		
-/*		if (isItemBlock) {
+		if (isItemBlock) {
 			registry.registerAll(
 					blockDoor1.itemBlock,
 					blockDoor2.itemBlock,
@@ -71,7 +71,7 @@ public class BlockRegistry {
 					blockDoor3,
 					blockDoor4
 					);
-		}*/
+		}
 	}
 	
 	public static void registerTileEntities() {

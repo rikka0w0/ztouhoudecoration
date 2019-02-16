@@ -143,9 +143,8 @@ public abstract class BlockDoorBase extends BlockDoor{
         setUnlocalizedName(unlocalizedName);
         setRegistryName(unlocalizedName);                //Key!
         setCreativeTab(CreativeTab.instance);
-        
-        GameRegistry.register(this);
-        GameRegistry.register(itemBlock, getRegistryName());
+
+        this.itemBlock.setRegistryName(this.getRegistryName());
 	}
 
 	@Override

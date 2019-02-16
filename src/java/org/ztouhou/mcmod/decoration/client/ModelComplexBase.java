@@ -3,7 +3,7 @@ package org.ztouhou.mcmod.decoration.client;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.state.IBlockState;
