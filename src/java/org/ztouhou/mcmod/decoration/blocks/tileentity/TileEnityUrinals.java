@@ -118,7 +118,6 @@ public class TileEnityUrinals extends TileEntityBase implements ITickable {
 			
 			this.state = newState;
 			this.markTileEntityForS2CSync();
-			System.out.println(this.state);
 		}
 	}
 

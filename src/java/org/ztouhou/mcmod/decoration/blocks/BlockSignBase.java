@@ -2,6 +2,7 @@ package org.ztouhou.mcmod.decoration.blocks;
 
 import java.lang.ref.WeakReference;
 
+import net.minecraft.block.state.BlockFaceShape;
 import org.ztouhou.mcmod.decoration.CreativeTab;
 
 import net.minecraft.block.material.Material;
@@ -140,7 +141,19 @@ public abstract class BlockSignBase extends BlockBase implements ISimpleTexture,
     public boolean isNormalCube(IBlockState state) {
         return false;
     }
-    
+
+    @Override
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+	    return false;
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return BlockFaceShape.UNDEFINED;
+    }
+
+
     ///////////////////
     /// BoundingBox
     ///////////////////
