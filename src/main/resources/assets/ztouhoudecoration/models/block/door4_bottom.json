@@ -1,0 +1,7 @@
+{
+    "parent": "ztouhoudecoration:block/doorbase_bottom",
+    "textures": {
+        "bottom": "ztouhoudecoration:block/door4_lower",
+        "top": "ztouhoudecoration:block/door4_lower"
+    }
+}
