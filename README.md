@@ -1,21 +1,22 @@
 # ztouhoudecoration
 A Minecraft Mod. Fire extinguishers, all kind of signs
 
-Supported Minecraft Version: 1.11.2, 1.12.2
+Supported Minecraft Version: 1.11.2, 1.12.2, 1.15.2
 (Content may vary)
 
 # Dependencies
 [LibRikka](https://github.com/rikka0w0/librikka)
 
 # Compiling and Testing
-1. Ensure that `Java` (found [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)), `Git` (found [here](http://git-scm.com/)) are installed correctly on your system.
-1. Create a base directory for the repo
-1. (On Windows) open Git CMD and navigate to the directory just created
-1. `git clone https://github.com/rikka0w0/ztouhoudecoration`
-1. `git submodule init` and `git submodule update` to get LibRikka
-1. `gradlew build` to build jars
-1. `gradlew setupDecompWorkspace` to setup a complete development environment.
-* On Windows: use `gradlew.bat` instead of `gradlew`
+```
+git clone https://github.com/rikka0w0/ztouhoudecoration
+git submodule update --init
+./gradlew runData
+./gradlew build
+
+cd librikka
+./gradlew build
+```
 
 # Notes
 1. If you are using Intellij Idea, the IDE will configure LibRikka automatically, so you don't need to worry about this

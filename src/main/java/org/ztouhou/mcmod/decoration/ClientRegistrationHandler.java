@@ -22,6 +22,8 @@ import org.ztouhou.mcmod.decoration.client.model.ModelWetFloor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.BlockModelShapes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.data.DataGenerator;
@@ -170,6 +172,10 @@ public class ClientRegistrationHandler {
 		// BlockSign6
 		modelSignStandard2(BlockRegistry.blockSign6);
 		
+		// Doors
+		RenderTypeLookup.setRenderLayer(BlockRegistry.blockDoor1, RenderType.getTranslucent());
+		RenderTypeLookup.setRenderLayer(BlockRegistry.blockDoor3, RenderType.getTranslucent());
+
 		registerTileEntityRenders();
 	}
 	

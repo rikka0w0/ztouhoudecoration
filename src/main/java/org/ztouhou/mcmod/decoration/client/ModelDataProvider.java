@@ -1,13 +1,13 @@
 package org.ztouhou.mcmod.decoration.client;
 
-
 import org.ztouhou.mcmod.decoration.BlockRegistry;
 import org.ztouhou.mcmod.decoration.Decoration;
 import org.ztouhou.mcmod.decoration.ItemRegistry;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
@@ -29,14 +29,26 @@ public class ModelDataProvider extends BlockStateProvider implements ISimpleItem
 	private void registerDynamic2(Block... blocks) {
 		for (Block block: blocks) {
 			VariantBlockStateBuilder builder = getVariantBuilder(block);
-			String namespace = block.getRegistryName().getNamespace();
-			String blockName =  block.getRegistryName().getPath();
 			final ModelFile modelFile = new ModelFile.ExistingModelFile(mcLoc("block/torch"), exfh);
 			builder.forAllStates((blockstate)->ConfiguredModel.builder().modelFile(modelFile).build());
 		}
+		
 		registerSimpleItem(blocks);
 	}
 
+	private void doorBlock(DoorBlock block) {
+		String baseName = block.getRegistryName().getPath();
+		ResourceLocation bottom = modLoc("block/" + baseName + "_lower");
+		ResourceLocation top = modLoc("block/" + baseName + "_upper");
+        ModelFile bottomLeft = models().doorBottomLeft(baseName + "_bottom", bottom, top);
+        ModelFile bottomRight = models().doorBottomRight(baseName + "_bottom_hinge", bottom, top);
+        ModelFile topLeft = models().doorTopLeft(baseName + "_top", bottom, top);
+        ModelFile topRight = models().doorTopRight(baseName + "_top_hinge", bottom, top);
+        doorBlock(block, bottomLeft, bottomRight, topLeft, topRight);
+        
+        registerSimpleItem(block);
+	}
+	
 	@Override
 	protected void registerStatesAndModels() {
 		registerDynamic2(BlockRegistry.blockSign1);
@@ -47,10 +59,10 @@ public class ModelDataProvider extends BlockStateProvider implements ISimpleItem
 		registerDynamic2(BlockRegistry.blockSign6);
 		registerDynamic2(BlockRegistry.blockMisc);
 		
-		registerDynamic2(BlockRegistry.blockDoor1);
-		registerDynamic2(BlockRegistry.blockDoor2);
-		registerDynamic2(BlockRegistry.blockDoor3);
-		registerDynamic2(BlockRegistry.blockDoor4);
+		doorBlock(BlockRegistry.blockDoor1);
+		doorBlock(BlockRegistry.blockDoor2);
+		doorBlock(BlockRegistry.blockDoor3);
+		doorBlock(BlockRegistry.blockDoor4);
 		
 		registerSimpleItem(ItemRegistry.fireExtinguisher);
 		registerSimpleItem(ItemRegistry.led12864isp);

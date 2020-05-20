@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_bottom_rh",
-    "textures": {
-        "bottom": "ztouhoudecoration:block/door1_lower",
-        "top": "ztouhoudecoration:block/door1_lower"
-    }
-}
