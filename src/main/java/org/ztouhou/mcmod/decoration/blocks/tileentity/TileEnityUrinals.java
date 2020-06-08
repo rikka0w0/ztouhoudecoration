@@ -25,7 +25,6 @@ public class TileEnityUrinals extends TileEntityBase implements ITickableTileEnt
 	private byte flushTimer;
 	
 	private int rotationInt = -1;
-	private Direction facing = null;
 	
 	public TileEnityUrinals() {
 		super(Decoration.MODID);

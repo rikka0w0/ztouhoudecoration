@@ -18,7 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.IModelData;
 import rikka.librikka.model.quadbuilder.RawQuadCube2;
 
-@SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
 public class ModelExit extends ModelComplexBase{
 	private final List<BakedQuad> deteced = new LinkedList<>();

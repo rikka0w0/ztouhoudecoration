@@ -22,11 +22,12 @@ import net.minecraftforge.client.model.data.IModelData;
 import rikka.librikka.model.quadbuilder.RawQuadCube2;
 import rikka.librikka.model.quadbuilder.TechneModelPart;
 
+@SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
 public class ModelUrinals extends TechneModel {
-	private final List<BakedQuad> idle = new LinkedList();
-	private final List<BakedQuad> detected = new LinkedList();
-	private final List<BakedQuad> flushing = new LinkedList();
+	private final List<BakedQuad> idle = new LinkedList<>();
+	private final List<BakedQuad> detected = new LinkedList<>();
+	private final List<BakedQuad> flushing = new LinkedList<>();
 	
 	public ModelUrinals(String texture, String particle, int rotation) {
 		super(texture, particle, rotation);

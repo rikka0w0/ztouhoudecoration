@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import rikka.librikka.model.quadbuilder.TechneModelPart;
 
+@SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
 public class ModelFireExtinguisher extends TechneModel {
 	public ModelFireExtinguisher(String texture, String particle, int rotation) {

@@ -9,7 +9,7 @@ import rikka.librikka.model.quadbuilder.RawQuadCube2;
 @OnlyIn(Dist.CLIENT)
 public class ModelSignStandard extends ModelComplexBase {
 	private final float width, height, depth;
-	private final int textureSize, u1, v1, u2, v2;
+	private final int u1, v1, u2, v2;
 	
 	public ModelSignStandard(String texture, String particle, int rotation,
 			float width, float height, float depth,
@@ -19,7 +19,6 @@ public class ModelSignStandard extends ModelComplexBase {
 		this.width = width;
 		this.height = height;
 		this.depth = depth;
-		this.textureSize = textureSize;
 		this.u1 = u1;
 		this.v1 = v1;
 		this.u2 = u2;

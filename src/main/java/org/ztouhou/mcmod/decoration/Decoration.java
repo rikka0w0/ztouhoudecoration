@@ -22,7 +22,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
-import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(Decoration.MODID)
 public class Decoration {
@@ -60,17 +59,15 @@ public class Decoration {
     	
     	@SubscribeEvent
 		public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    		IForgeRegistry registry = event.getRegistry();
     		BlockRegistry.initBlocks();
-    		BlockRegistry.registerBlocks(registry, false);
+    		BlockRegistry.registerBlocks(event.getRegistry());
     	}
     	
     	@SubscribeEvent
 		public static void registerItems(RegistryEvent.Register<Item> event) {
-    		IForgeRegistry registry = event.getRegistry();
     		ItemRegistry.initItems();
-    		BlockRegistry.registerBlocks(registry, true);
-    		ItemRegistry.registerItems(registry);
+    		BlockRegistry.registerBlockItems(event.getRegistry());
+    		ItemRegistry.registerItems(event.getRegistry());
     	}
     	
     	@SubscribeEvent
